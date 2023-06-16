@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
     private void createWorkout(String name) {
         ArrayList<Exercise> exercises = new ArrayList<>();
-        // Add exercises to the workout as needed
 
         Workout workout = new Workout(name, exercises);
         workouts.add(workout);

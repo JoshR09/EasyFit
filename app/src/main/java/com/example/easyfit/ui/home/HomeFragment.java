@@ -49,8 +49,48 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Button createWorkoutButton = binding.createWorkout;
+        createWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCreateWorkoutDialog();
+            }
+        });
 
         return root;
+    }
+
+    private void showCreateWorkoutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Create Workout");
+
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_workout, null);
+        final EditText workoutNameEditText = dialogView.findViewById(R.id.workoutNameEditText);
+
+        builder.setView(dialogView)
+                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String workoutName = workoutNameEditText.getText().toString();
+                        createWorkout(workoutName);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        builder.show();
+    }
+
+    private void createWorkout(String name) {
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        // Add exercises to the workout as needed
+
+        Workout workout = new Workout(name, exercises);
+        workouts.add(workout);
+        binding.recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override

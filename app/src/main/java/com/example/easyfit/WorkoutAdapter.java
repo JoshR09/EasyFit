@@ -27,8 +27,6 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
         Workout workout = workouts.get(position);
         holder.tvName.setText(workout.getName());
-        holder.tvDuration.setText(String.valueOf(workout.getDuration()));
-        holder.tvIntensity.setText(String.valueOf(workout.getIntensity()));
     }
 
     @Override
@@ -38,14 +36,10 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
 
     public class WorkoutViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
-        TextView tvDuration;
-        TextView tvIntensity;
 
         public WorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
-            tvDuration = itemView.findViewById(R.id.tvDuration);
-            tvIntensity = itemView.findViewById(R.id.tvIntensity);
         }
     }
 }

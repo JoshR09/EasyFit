@@ -1,17 +1,18 @@
 package com.example.easyfit;
 
-public class Workout {
-    private String name;
-    private int duration;
-    private int intensity;
+import java.util.ArrayList;
 
-    public Workout(String name, int duration, int intensity) {
+public class Workout {
+
+    private String name;
+
+    private ArrayList<Exercise> exercises;
+
+    public Workout(String name, ArrayList<Exercise> exercises) {
         this.name = name;
-        this.duration = duration;
-        this.intensity = intensity;
+        this.exercises = exercises;
     }
 
-    // Getters and setters
     public String getName() {
         return name;
     }
@@ -20,19 +21,11 @@ public class Workout {
         this.name = name;
     }
 
-    public int getDuration() {
-        return duration;
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public int getIntensity() {
-        return intensity;
-    }
-
-    public void setIntensity(int intensity) {
-        this.intensity = intensity;
+    public void setExercises(ArrayList<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

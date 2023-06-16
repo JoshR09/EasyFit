@@ -1,8 +1,9 @@
 package com.example.easyfit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Workout {
+public class Workout implements Serializable {
 
     private String name;
 

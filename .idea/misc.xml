@@ -7,8 +7,10 @@
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/dialog_create_workout.xml" value="0.365625" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_exercise.xml" value="0.365625" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/item_exercise.xml" value="0.365625" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/item_workout.xml" value="0.67" />
       </map>
     </option>

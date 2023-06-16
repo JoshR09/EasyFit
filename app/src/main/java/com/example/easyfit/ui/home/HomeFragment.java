@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +19,12 @@ import com.example.easyfit.Exercise;
 import com.example.easyfit.Workout;
 import com.example.easyfit.WorkoutAdapter;
 import com.example.easyfit.databinding.FragmentHomeBinding;
+import com.example.easyfit.ui.ExerciseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClickListener {
 
     private FragmentHomeBinding binding;
 
@@ -36,15 +38,9 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Initialize workouts
-        ArrayList<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("Push-ups", 10));
-        exercises.add(new Exercise("Squats", 15));
-        workouts.add(new Workout("Day 1", exercises));
-
         // Display workouts in a RecyclerView or ListView
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-        WorkoutAdapter adapter = new WorkoutAdapter(workouts);
+        WorkoutAdapter adapter = new WorkoutAdapter(workouts, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -57,6 +53,21 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onItemClick(Workout workout) {
+        // Navigate to ExerciseFragment and pass the selected workout
+        ExerciseFragment exerciseFragment = new ExerciseFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("workout", workout);
+        exerciseFragment.setArguments(bundle);
+
+        // Replace the current fragment with the ExerciseFragment
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, exerciseFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void showCreateWorkoutDialog() {

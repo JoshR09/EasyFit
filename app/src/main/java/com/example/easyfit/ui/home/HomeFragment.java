@@ -145,14 +145,16 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onDeleteClick(int position) {
+        workouts.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, workouts.size()); // Update the remaining items
+        saveWorkouts();
     }
 
     @Override
-    public void onDeleteClick(int position) {
-        this.adapter.deleteItem(position);
-        saveWorkouts();
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

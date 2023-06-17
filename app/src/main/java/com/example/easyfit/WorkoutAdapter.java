@@ -58,8 +58,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     }
 
     public void deleteItem(int position) {
-        workouts.remove(position);
+        listener.onDeleteClick(position); // Call the listener method first
         notifyItemRemoved(position);
+        notifyItemRangeChanged(position, workouts.size()); // Update the remaining items
     }
 
     public class WorkoutViewHolder extends RecyclerView.ViewHolder {

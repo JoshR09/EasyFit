@@ -13,8 +13,11 @@ import java.util.List;
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> {
     private List<Exercise> exercises;
 
-    public ExerciseAdapter(List<Exercise> exercises) {
+    private ExerciseAdapter.OnItemClickListener listener;
+
+    public ExerciseAdapter(List<Exercise> exercises, ExerciseAdapter.OnItemClickListener listener) {
         this.exercises = exercises;
+        this.listener = listener;
     }
 
     @NonNull
@@ -29,6 +32,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         Exercise exercise = exercises.get(position);
         holder.tvExerciseName.setText(exercise.getName());
         holder.tvExerciseSets.setText(String.valueOf(exercise.getSets()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(exercise);
+            }
+        });
     }
 
     @Override
@@ -45,5 +55,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             tvExerciseName = itemView.findViewById(R.id.tvExerciseName);
             tvExerciseSets = itemView.findViewById(R.id.tvExerciseSets);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Exercise exercise);
     }
 }

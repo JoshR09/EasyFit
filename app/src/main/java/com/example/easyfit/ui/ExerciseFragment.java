@@ -11,19 +11,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.easyfit.Exercise;
-import com.example.easyfit.ExerciseAdapter;
-import com.example.easyfit.R;
-import com.example.easyfit.Workout;
+import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
 import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
 
 import java.util.List;
 
-public class ExerciseFragment extends Fragment {
+public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItemClickListener {
     private FragmentExerciseBinding binding; // Add this line
 
     private RecyclerView recyclerView;
@@ -55,7 +53,7 @@ public class ExerciseFragment extends Fragment {
             Workout workout = (Workout) bundle.getSerializable("workout");
             if (workout != null) {
                 exercises = workout.getExercises();
-                ExerciseAdapter adapter = new ExerciseAdapter(exercises);
+                ExerciseAdapter adapter = new ExerciseAdapter(exercises, this);
                 recyclerView.setAdapter(adapter);
             }
         }
@@ -109,6 +107,20 @@ public class ExerciseFragment extends Fragment {
                 homeFragment.saveWorkouts(); // Call the saveWorkouts method in HomeFragment
             }
         }
+    }
+
+    @Override
+    public void onItemClick(Exercise exercise) {
+        // Navigate to SetFragment and pass the selected exercise's setList
+        SetFragment setFragment = new SetFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("sets", exercise.getSetList());
+        setFragment.setArguments(bundle);
+
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, setFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

@@ -18,6 +18,7 @@ import com.example.easyfit.ExerciseAdapter;
 import com.example.easyfit.R;
 import com.example.easyfit.Workout;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
+import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -30,8 +31,14 @@ public class ExerciseFragment extends Fragment {
 
     private Workout currentWorkout;
 
+    private HomeFragment homeFragment;
+
     public void setCurrentWorkout(Workout workout) {
         this.currentWorkout = workout;
+    }
+
+    public ExerciseFragment(HomeFragment homeFragment) {
+        this.homeFragment = homeFragment;
     }
 
     @Override
@@ -97,6 +104,10 @@ public class ExerciseFragment extends Fragment {
         if (currentWorkout != null) {
             currentWorkout.getExercises().add(newExercise);
             recyclerView.getAdapter().notifyDataSetChanged();
+
+            if (homeFragment != null) {
+                homeFragment.saveWorkouts(); // Call the saveWorkouts method in HomeFragment
+            }
         }
     }
 

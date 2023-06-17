@@ -57,13 +57,15 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
             }
         });
 
+        loadWorkouts(); // Load the workouts from SharedPreferences
+
         return root;
     }
 
     @Override
     public void onItemClick(Workout workout) {
         // Navigate to ExerciseFragment and pass the selected workout
-        ExerciseFragment exerciseFragment = new ExerciseFragment();
+        ExerciseFragment exerciseFragment = new ExerciseFragment(this);
         Bundle bundle = new Bundle();
         bundle.putSerializable("workout", workout);
         exerciseFragment.setArguments(bundle);
@@ -109,6 +111,49 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
         Workout workout = new Workout(name, exercises);
         workouts.add(workout);
         binding.recyclerView.getAdapter().notifyDataSetChanged();
+
+        saveWorkouts(); // Save the workouts using SharedPreferences
+
+        // Pass the instance of HomeFragment to ExerciseFragment
+        ExerciseFragment exerciseFragment = new ExerciseFragment(this);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("workout", workout);
+        exerciseFragment.setArguments(bundle);
+
+        // Set the current workout in the ExerciseFragment
+        exerciseFragment.setCurrentWorkout(workout);
+
+        // Replace the current fragment with the ExerciseFragment
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, exerciseFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void saveWorkouts() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("WorkoutPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String workoutsJson = gson.toJson(workouts);
+        editor.putString("workouts", workoutsJson);
+        editor.apply();
+    }
+
+    private void loadWorkouts() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("WorkoutPrefs", Context.MODE_PRIVATE);
+        String workoutsJson = sharedPreferences.getString("workouts", "");
+
+        if (!workoutsJson.isEmpty()) {
+            Gson gson = new Gson();
+            Type workoutListType = new TypeToken<ArrayList<Workout>>(){}.getType();
+            workouts = gson.fromJson(workoutsJson, workoutListType);
+
+            if (workouts != null) {
+                WorkoutAdapter adapter = new WorkoutAdapter(workouts, this);
+                binding.recyclerView.setAdapter(adapter);
+            }
+        }
     }
 
     @Override

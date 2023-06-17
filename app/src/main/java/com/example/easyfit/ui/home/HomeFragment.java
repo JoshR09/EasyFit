@@ -35,6 +35,8 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
     private List<Workout> workouts = new ArrayList<>();
 
+    private WorkoutAdapter adapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -45,7 +47,7 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
         // Display workouts in a RecyclerView or ListView
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-        WorkoutAdapter adapter = new WorkoutAdapter(workouts, this);
+        this.adapter = new WorkoutAdapter(workouts, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -110,7 +112,7 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
         Workout workout = new Workout(name, exercises);
         workouts.add(workout);
-        binding.recyclerView.getAdapter().notifyDataSetChanged();
+        this.adapter.notifyDataSetChanged();
 
         saveWorkouts(); // Save the workouts using SharedPreferences
 
@@ -146,5 +148,11 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        this.adapter.deleteItem(position);
+        saveWorkouts();
     }
 }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,18 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         Workout workout = workouts.get(position);
         holder.tvName.setText(workout.getName());
 
+        // Set the click listener for the delete button
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Call the deleteItem method with the clicked position
+                int clickedPosition = holder.getAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION) {
+                    deleteItem(clickedPosition);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,16 +57,25 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         return workouts.size();
     }
 
+    public void deleteItem(int position) {
+        workouts.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public class WorkoutViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
+        ImageButton btnDelete;
 
         public WorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(Workout workout);
+        void onDeleteClick(int position);
     }
 }
+

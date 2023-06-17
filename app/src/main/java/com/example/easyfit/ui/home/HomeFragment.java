@@ -114,20 +114,6 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
         saveWorkouts(); // Save the workouts using SharedPreferences
 
-        // Pass the instance of HomeFragment to ExerciseFragment
-        ExerciseFragment exerciseFragment = new ExerciseFragment(this);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("workout", workout);
-        exerciseFragment.setArguments(bundle);
-
-        // Set the current workout in the ExerciseFragment
-        exerciseFragment.setCurrentWorkout(workout);
-
-        // Replace the current fragment with the ExerciseFragment
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment_activity_main, exerciseFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
     public void saveWorkouts() {

@@ -3,6 +3,7 @@ package com.example.easyfit;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,8 +27,8 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SetViewHolder holder, int position) {
         Set set = sets.get(position);
-        holder.tvReps.setText(String.valueOf(set.getReps()));
-        holder.tvWeight.setText(String.valueOf(set.getWeight()));
+        holder.etReps.setText(String.valueOf(set.getReps()));
+        holder.etWeight.setText(String.valueOf(set.getWeight()));
     }
 
     @Override
@@ -38,11 +39,15 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     public class SetViewHolder extends RecyclerView.ViewHolder {
         TextView tvReps;
         TextView tvWeight;
+        EditText etReps;
+        EditText etWeight;
 
         public SetViewHolder(@NonNull View itemView) {
             super(itemView);
             tvReps = itemView.findViewById(R.id.tvReps);
             tvWeight = itemView.findViewById(R.id.tvWeight);
+            etReps = itemView.findViewById(R.id.etReps);
+            etWeight = itemView.findViewById(R.id.etWeight);
         }
     }
 }

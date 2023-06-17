@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
         // Display workouts in a RecyclerView or ListView
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-        this.adapter = new WorkoutAdapter(workouts, this);
+        this.adapter = new WorkoutAdapter(requireContext(), workouts, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
             workouts = gson.fromJson(workoutsJson, workoutListType);
 
             if (workouts != null) {
-                WorkoutAdapter adapter = new WorkoutAdapter(workouts, this);
+                WorkoutAdapter adapter = new WorkoutAdapter(requireContext(), workouts, this);
                 binding.recyclerView.setAdapter(adapter);
             }
         }

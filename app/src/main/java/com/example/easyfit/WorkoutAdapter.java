@@ -1,5 +1,8 @@
 package com.example.easyfit;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +16,13 @@ import java.util.List;
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> {
     private List<Workout> workouts;
+
     private OnItemClickListener listener;
 
-    public WorkoutAdapter(List<Workout> workouts, OnItemClickListener listener) {
+    private Context context;
+
+    public WorkoutAdapter(Context context, List<Workout> workouts, OnItemClickListener listener) {
+        this.context = context;
         this.workouts = workouts;
         this.listener = listener;
     }
@@ -58,9 +65,28 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     }
 
     public void deleteItem(int position) {
-        listener.onDeleteClick(position); // Call the listener method first
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, workouts.size()); // Update the remaining items
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Delete Workout");
+        builder.setMessage("Are you sure you want to delete this workout?");
+
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                listener.onDeleteClick(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, workouts.size());
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public class WorkoutViewHolder extends RecyclerView.ViewHolder {

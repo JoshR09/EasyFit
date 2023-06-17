@@ -1,7 +1,9 @@
 package com.example.easyfit.ui.home;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +22,10 @@ import com.example.easyfit.Workout;
 import com.example.easyfit.WorkoutAdapter;
 import com.example.easyfit.databinding.FragmentHomeBinding;
 import com.example.easyfit.ui.ExerciseFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 

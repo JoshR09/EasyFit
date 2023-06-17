@@ -1,7 +1,9 @@
 package com.example.easyfit.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.example.easyfit.ExerciseAdapter;
 import com.example.easyfit.R;
 import com.example.easyfit.Workout;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
+import com.google.gson.Gson;
 
 import java.util.List;
 

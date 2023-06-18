@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.databinding.FragmentSetBinding;
+import com.example.easyfit.ui.ExerciseFragment;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,12 @@ public class SetFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Set> sets;
     private SetAdapter adapter;
+
+    private ExerciseFragment exerciseFragment;
+
+    public SetFragment(ExerciseFragment exerciseFragment) {
+        this.exerciseFragment = exerciseFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class SetFragment extends Fragment {
 
                     if (adapter != null) {
                         adapter.updateSetValues(i, reps, weight);
+                        exerciseFragment.getHomeFragment().saveWorkouts();
                     }
                 }
             }

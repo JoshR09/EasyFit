@@ -109,10 +109,14 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         }
     }
 
+    public HomeFragment getHomeFragment() {
+        return this.homeFragment;
+    }
+
     @Override
     public void onItemClick(Exercise exercise) {
         // Navigate to SetFragment and pass the selected exercise's setList
-        SetFragment setFragment = new SetFragment();
+        SetFragment setFragment = new SetFragment(this);
         Bundle bundle = new Bundle();
         bundle.putSerializable("sets", exercise.getSetList());
         setFragment.setArguments(bundle);

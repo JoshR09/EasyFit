@@ -7,6 +7,8 @@ public class Exercise {
 
     private int sets;
 
+    private boolean isLogged;
+
     private ArrayList<Set> setList = new ArrayList<>();
 
     public Exercise(String name, int sets) {
@@ -40,6 +42,14 @@ public class Exercise {
 
     public void setSetList(ArrayList<Set> setList) {
         this.setList = setList;
+    }
+
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
     }
 
 }

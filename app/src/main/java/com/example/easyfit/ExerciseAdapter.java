@@ -40,6 +40,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         holder.tvExerciseName.setText(exercise.getName());
         holder.tvExerciseSets.setText(String.valueOf(exercise.getSets()));
 
+        if (exercise.isLogged()) {
+            holder.itemView.setBackgroundResource(R.drawable.blue_overlay);
+        } else {
+            holder.itemView.setBackgroundResource(0);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

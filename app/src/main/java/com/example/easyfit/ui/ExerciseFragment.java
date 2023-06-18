@@ -42,6 +42,14 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         this.homeFragment = homeFragment;
     }
 
+    public Workout getCurrentWorkout() {
+        return currentWorkout;
+    }
+
+    public ExerciseAdapter getAdapter() {
+        return adapter;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentExerciseBinding.inflate(inflater, container, false); // Initialize the binding
@@ -119,7 +127,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
     @Override
     public void onItemClick(Exercise exercise) {
         // Navigate to SetFragment and pass the selected exercise's setList
-        SetFragment setFragment = new SetFragment(this);
+        SetFragment setFragment = new SetFragment(this, exercise);
         Bundle bundle = new Bundle();
         bundle.putSerializable("sets", exercise.getSetList());
         setFragment.setArguments(bundle);

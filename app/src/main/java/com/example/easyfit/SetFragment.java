@@ -13,17 +13,19 @@ import com.example.easyfit.databinding.FragmentSetBinding;
 import com.example.easyfit.ui.ExerciseFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SetFragment extends Fragment {
     private FragmentSetBinding binding;
     private RecyclerView recyclerView;
     private ArrayList<Set> sets;
     private SetAdapter adapter;
-
     private ExerciseFragment exerciseFragment;
+    private Exercise currentExercise;
 
-    public SetFragment(ExerciseFragment exerciseFragment) {
+    public SetFragment(ExerciseFragment exerciseFragment, Exercise currentExercise) {
         this.exerciseFragment = exerciseFragment;
+        this.currentExercise = currentExercise;
     }
 
     @Override
@@ -61,11 +63,18 @@ public class SetFragment extends Fragment {
                     }
                 }
 
+                markExerciseAsLogged(); // New method to mark the exercise as logged
+
                 getParentFragmentManager().popBackStack();
             }
         });
 
         return root;
+    }
+
+    private void markExerciseAsLogged() {
+        currentExercise.setLogged(true);
+        exerciseFragment.getAdapter().notifyDataSetChanged();
     }
 }
 

@@ -89,14 +89,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         final EditText exerciseSetsEditText = dialogView.findViewById(R.id.exerciseSetsEditText);
 
         builder.setView(dialogView)
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String exerciseName = exerciseNameEditText.getText().toString();
-                        int exerciseSets = Integer.parseInt(exerciseSetsEditText.getText().toString());
-                        createExercise(exerciseName, exerciseSets);
-                    }
-                })
+                .setPositiveButton("Add", null) // Set positive button to null initially
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -104,8 +97,37 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
                     }
                 });
 
-        builder.show();
+        final AlertDialog alertDialog = builder.create(); // Create the AlertDialog
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String exerciseName = exerciseNameEditText.getText().toString().trim();
+                        String exerciseSetsText = exerciseSetsEditText.getText().toString().trim();
+
+                        if (exerciseName.isEmpty()) {
+                            exerciseNameEditText.setError("Please enter exercise name");
+                            exerciseNameEditText.requestFocus();
+                        } else if (exerciseSetsText.isEmpty()) {
+                            exerciseSetsEditText.setError("Please enter number of sets");
+                            exerciseSetsEditText.requestFocus();
+                        } else {
+                            int exerciseSets = Integer.parseInt(exerciseSetsText);
+                            createExercise(exerciseName, exerciseSets);
+                            alertDialog.dismiss(); // Dismiss the dialog only if the input is valid
+                        }
+                    }
+                });
+            }
+        });
+
+        alertDialog.show();
     }
+
 
     private void createExercise(String name, int sets) {
         Exercise newExercise = new Exercise(name, sets);

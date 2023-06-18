@@ -90,13 +90,7 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
         final EditText workoutNameEditText = dialogView.findViewById(R.id.workoutNameEditText);
 
         builder.setView(dialogView)
-                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String workoutName = workoutNameEditText.getText().toString();
-                        createWorkout(workoutName);
-                    }
-                })
+                .setPositiveButton("Create", null) // Set positive button to null initially
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -104,7 +98,30 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
                     }
                 });
 
-        builder.show();
+        final AlertDialog alertDialog = builder.create(); // Create the AlertDialog
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String workoutName = workoutNameEditText.getText().toString().trim();
+
+                        if (workoutName.isEmpty()) {
+                            workoutNameEditText.setError("Please enter workout name");
+                            workoutNameEditText.requestFocus();
+                        } else {
+                            createWorkout(workoutName);
+                            alertDialog.dismiss(); // Dismiss the dialog only if the input is valid
+                        }
+                    }
+                });
+            }
+        });
+
+        alertDialog.show();
     }
 
     private void createWorkout(String name) {

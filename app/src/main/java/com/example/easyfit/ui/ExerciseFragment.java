@@ -18,7 +18,13 @@ import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
 import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItemClickListener {
@@ -33,6 +39,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
     private HomeFragment homeFragment;
 
     private ExerciseAdapter adapter;
+
+    private CompletedWorkouts completedWorkouts = new CompletedWorkouts();
 
     public void setCurrentWorkout(Workout workout) {
         this.currentWorkout = workout;
@@ -85,6 +93,9 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         completeWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                completedWorkouts.addCompletedWorkout(new Workout(currentWorkout.getName(), currentWorkout.getExercises()));
+                saveCompletedWorkouts();
+
                 for (Exercise exercise : exercises) {
                     exercise.setLogged(false);
                 }
@@ -95,6 +106,16 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         });
 
         return root;
+    }
+
+    public void saveCompletedWorkouts() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CompletedWorkoutPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String workoutsJson = gson.toJson(completedWorkouts.getCompletedWorkouts());
+        editor.putString("completedWorkouts", workoutsJson);
+        editor.apply();
     }
 
     private void showCreateExerciseDialog() {

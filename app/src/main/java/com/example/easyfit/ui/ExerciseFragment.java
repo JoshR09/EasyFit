@@ -25,11 +25,14 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
     private FragmentExerciseBinding binding; // Add this line
 
     private RecyclerView recyclerView;
+
     private List<Exercise> exercises;
 
     private Workout currentWorkout;
 
     private HomeFragment homeFragment;
+
+    private ExerciseAdapter adapter;
 
     public void setCurrentWorkout(Workout workout) {
         this.currentWorkout = workout;
@@ -53,8 +56,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             Workout workout = (Workout) bundle.getSerializable("workout");
             if (workout != null) {
                 exercises = workout.getExercises();
-                ExerciseAdapter adapter = new ExerciseAdapter(exercises, this);
-                recyclerView.setAdapter(adapter);
+                this.adapter = new ExerciseAdapter(requireContext(), exercises, this);
+                recyclerView.setAdapter(this.adapter);
             }
         }
 
@@ -125,6 +128,13 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         transaction.replace(R.id.nav_host_fragment_activity_main, setFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void onDeleteClick(int position) {
+        exercises.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, exercises.size()); // Update the remaining items
+        homeFragment.saveWorkouts();
     }
 
 }

@@ -81,6 +81,19 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             }
         });
 
+        Button completeWorkoutButton = root.findViewById(R.id.completeWorkout);
+        completeWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (Exercise exercise : exercises) {
+                    exercise.setLogged(false);
+                }
+                adapter.notifyDataSetChanged();
+                homeFragment.saveWorkouts();
+                getParentFragmentManager().popBackStack();
+            }
+        });
+
         return root;
     }
 

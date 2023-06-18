@@ -50,6 +50,10 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         return adapter;
     }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentExerciseBinding.inflate(inflater, container, false); // Initialize the binding
@@ -152,6 +156,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         SetFragment setFragment = new SetFragment(this, exercise);
         Bundle bundle = new Bundle();
         bundle.putSerializable("sets", exercise.getSetList());
+        bundle.putInt("position", exercises.indexOf(exercise));
         setFragment.setArguments(bundle);
 
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();

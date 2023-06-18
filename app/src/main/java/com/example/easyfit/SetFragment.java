@@ -69,6 +69,38 @@ public class SetFragment extends Fragment {
             }
         });
 
+        Button addButton = root.findViewById(R.id.addSetButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Retrieve the position of the clicked exercise
+                int position = getArguments().getInt("position");
+
+                // Add the new set to the exercise
+                sets.add(new Set(0, 0));
+                recyclerView.getAdapter().notifyDataSetChanged();
+
+                // Update the number of sets in the ExerciseAdapter
+                exerciseFragment.getAdapter().updateExerciseSets(position, sets.size());
+
+                exerciseFragment.getHomeFragment().saveWorkouts();
+            }
+        });
+
+        Button dlSetButton = root.findViewById(R.id.dlSetButton);
+        dlSetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!sets.isEmpty()) {
+                    int position = getArguments().getInt("position");
+                    sets.remove(sets.size() - 1);
+                    recyclerView.getAdapter().notifyItemRemoved(sets.size());
+                    exerciseFragment.getAdapter().updateExerciseSets(position, sets.size());
+                    exerciseFragment.getHomeFragment().saveWorkouts();
+                }
+            }
+        });
+
         return root;
     }
 

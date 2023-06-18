@@ -96,6 +96,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         return exercises.size();
     }
 
+    public void updateExerciseSets(int position, int sets) {
+        Exercise exercise = exercises.get(position);
+        exercise.setSets(sets);
+        notifyItemChanged(position);
+    }
+
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         TextView tvExerciseName;
         TextView tvExerciseSets;

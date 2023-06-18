@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     private ArrayList<Set> sets;
 
+
+
     public SetAdapter(ArrayList<Set> sets) {
         this.sets = sets;
     }
@@ -34,6 +36,13 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     @Override
     public int getItemCount() {
         return sets.size();
+    }
+
+    public void updateSetValues(int position, int reps, int weight) {
+        Set set = sets.get(position);
+        set.setReps(reps);
+        set.setWeight(weight);
+        notifyItemChanged(position);
     }
 
     public class SetViewHolder extends RecyclerView.ViewHolder {

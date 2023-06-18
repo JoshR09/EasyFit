@@ -60,6 +60,8 @@ public class SetFragment extends Fragment {
                         exerciseFragment.getHomeFragment().saveWorkouts();
                     }
                 }
+
+                getParentFragmentManager().popBackStack();
             }
         });
 

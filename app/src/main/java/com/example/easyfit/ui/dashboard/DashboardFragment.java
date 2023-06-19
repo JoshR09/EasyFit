@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentDashboardBinding;
 import com.example.easyfit.ui.ExerciseFragment;
+import com.example.easyfit.ui.PastExerciseFragment;
 import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +49,7 @@ public class DashboardFragment extends Fragment {
                 String calendarViewDate = day + "-" + month + "-" + year;
                 Workout workout = completedWorkouts.getCompletedWorkouts().get(calendarViewDate);
                 if (workout != null) {
-                    navigateToExerciseFragment();
+                    navigateToExerciseFragment(workout);
                 }
             }
         });
@@ -56,7 +57,17 @@ public class DashboardFragment extends Fragment {
         return root;
     }
 
-    public void navigateToExerciseFragment() {
+    public void navigateToExerciseFragment(Workout workout) {
+        PastExerciseFragment pastExerciseFragment = new PastExerciseFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("workout", workout);
+        pastExerciseFragment.setArguments(bundle);
+
+        // Replace the current fragment with the ExerciseFragment
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, pastExerciseFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void loadCompletedWorkouts() {

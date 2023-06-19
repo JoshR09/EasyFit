@@ -18,17 +18,11 @@ import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
 import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItemClickListener {
-    private FragmentExerciseBinding binding; // Add this line
+    private FragmentExerciseBinding binding;
 
     private RecyclerView recyclerView;
 
@@ -50,16 +44,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         this.homeFragment = homeFragment;
     }
 
-    public Workout getCurrentWorkout() {
-        return currentWorkout;
-    }
-
     public ExerciseAdapter getAdapter() {
         return adapter;
-    }
-
-    public RecyclerView getRecyclerView() {
-        return recyclerView;
     }
 
     @Override

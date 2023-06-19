@@ -1,4 +1,4 @@
-package com.example.easyfit;
+package com.example.easyfit.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.easyfit.Exercise;
+import com.example.easyfit.R;
+import com.example.easyfit.Set;
+import com.example.easyfit.SetAdapter;
 import com.example.easyfit.databinding.FragmentSetBinding;
 import com.example.easyfit.ui.ExerciseFragment;
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
@@ -38,7 +39,7 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
             Workout workout = (Workout) bundle.getSerializable("workout");
             if (workout != null) {
                 exercises = workout.getExercises();
-                this.adapter = new PastExerciseAdapter(requireContext(), exercises, this);
+                this.adapter = new PastExerciseAdapter(exercises, this);
                 recyclerView.setAdapter(this.adapter);
             }
         }
@@ -48,6 +49,15 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
 
     @Override
     public void onItemClick(Exercise exercise) {
+        PastSetFragment pastSetFragment = new PastSetFragment(exercise);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("sets", exercise.getSetList());
+        bundle.putInt("position", exercises.indexOf(exercise));
+        pastSetFragment.setArguments(bundle);
 
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, pastSetFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

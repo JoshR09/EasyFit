@@ -18,10 +18,7 @@ public class PastExerciseAdapter extends RecyclerView.Adapter<PastExerciseAdapte
 
     private PastExerciseAdapter.OnItemClickListener listener;
 
-    private Context context;
-
-    public PastExerciseAdapter(Context context, List<Exercise> exercises, PastExerciseAdapter.OnItemClickListener listener) {
-        this.context = context;
+    public PastExerciseAdapter(List<Exercise> exercises, PastExerciseAdapter.OnItemClickListener listener) {
         this.exercises = exercises;
         this.listener = listener;
     }

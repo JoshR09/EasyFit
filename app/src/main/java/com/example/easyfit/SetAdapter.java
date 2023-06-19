@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     private ArrayList<Set> sets;
 
-
-
     public SetAdapter(ArrayList<Set> sets) {
         this.sets = sets;
     }

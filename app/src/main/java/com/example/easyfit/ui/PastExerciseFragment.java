@@ -38,7 +38,7 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
         if (bundle != null && bundle.containsKey("workout")) {
             Workout workout = (Workout) bundle.getSerializable("workout");
             if (workout != null) {
-                exercises = workout.getExercises();
+                exercises = workout.getLoggedExercises();
                 this.adapter = new PastExerciseAdapter(exercises, this);
                 recyclerView.setAdapter(this.adapter);
             }

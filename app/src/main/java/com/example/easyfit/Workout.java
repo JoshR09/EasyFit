@@ -26,7 +26,13 @@ public class Workout implements Serializable {
         return exercises;
     }
 
-    public void setExercises(ArrayList<Exercise> exercises) {
-        this.exercises = exercises;
+    public ArrayList<Exercise> getLoggedExercises() {
+        ArrayList<Exercise> loggedExercises = new ArrayList<>();
+        for (Exercise exercise : exercises) {
+            if (exercise.isLogged()) {
+                loggedExercises.add(exercise);
+            }
+        }
+        return loggedExercises;
     }
 }

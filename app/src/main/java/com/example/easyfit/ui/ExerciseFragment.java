@@ -107,11 +107,17 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
                 saveCompletedWorkouts();
 
                 for (Exercise exercise : exercises) {
+                    for (Set set : exercise.getSetList()) {
+                        set.setComplete(false);
+                    }
                     exercise.setLogged(false);
                 }
                 adapter.notifyDataSetChanged();
                 homeFragment.saveWorkouts();
-                getParentFragmentManager().popBackStack();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment_activity_main, homeFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

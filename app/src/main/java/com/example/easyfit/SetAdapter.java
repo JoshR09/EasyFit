@@ -3,6 +3,8 @@ package com.example.easyfit;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,8 +15,11 @@ import java.util.ArrayList;
 public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
     private ArrayList<Set> sets;
 
-    public SetAdapter(ArrayList<Set> sets) {
+    private SetAdapter.OnItemClickListener listener;
+
+    public SetAdapter(ArrayList<Set> sets, SetAdapter.OnItemClickListener listener) {
         this.sets = sets;
+        this.listener = listener;
     }
 
     @NonNull
@@ -29,6 +34,21 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         Set set = sets.get(position);
         holder.etReps.setText(String.valueOf(set.getReps()));
         holder.etWeight.setText(String.valueOf(set.getWeight()));
+
+        if (set.isComplete()) {
+            holder.itemView.setBackgroundResource(R.drawable.blue_overlay);
+        } else {
+            holder.itemView.setBackgroundResource(0);
+        }
+
+        holder.completeSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                set.setComplete(true);
+                notifyDataSetChanged();
+                listener.onCompleteClick(set);
+            }
+        });
     }
 
     @Override
@@ -48,6 +68,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         TextView tvWeight;
         EditText etReps;
         EditText etWeight;
+        Button completeSet;
 
         public SetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,7 +76,12 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
             tvWeight = itemView.findViewById(R.id.tvWeight);
             etReps = itemView.findViewById(R.id.etReps);
             etWeight = itemView.findViewById(R.id.etWeight);
+            completeSet = itemView.findViewById(R.id.completeSet);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onCompleteClick(Set set);
     }
 }
 

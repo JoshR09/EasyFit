@@ -6,6 +6,8 @@ public class Set {
 
     private int weight;
 
+    private boolean isComplete;
+
     public Set(int reps, int weight) {
         this.reps = reps;
         this.weight = weight;
@@ -25,5 +27,13 @@ public class Set {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 }

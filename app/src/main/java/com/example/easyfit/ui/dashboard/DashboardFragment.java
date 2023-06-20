@@ -56,7 +56,7 @@ public class DashboardFragment extends Fragment {
                 String dateKey = selectedDate.get(Calendar.DAY_OF_MONTH) + "-" + selectedDate.get(Calendar.MONTH) + "-" + selectedDate.get(Calendar.YEAR);
                 Workout workout = completedWorkouts.getCompletedWorkouts().get(dateKey);
                 if (workout != null) {
-                    navigateToExerciseFragment(workout);
+                    navigateToPastExerciseFragment(workout);
                 }
             }
         });
@@ -64,23 +64,13 @@ public class DashboardFragment extends Fragment {
         return root;
     }
 
-    private Date parseDate(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        try {
-            return sdf.parse(dateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void navigateToExerciseFragment(Workout workout) {
+    public void navigateToPastExerciseFragment(Workout workout) {
         PastExerciseFragment pastExerciseFragment = new PastExerciseFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("workout", workout);
         pastExerciseFragment.setArguments(bundle);
 
-        // Replace the current fragment with the ExerciseFragment
+        // Replace the current fragment with the PastExerciseFragment
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment_activity_main, pastExerciseFragment);
         transaction.addToBackStack(null);

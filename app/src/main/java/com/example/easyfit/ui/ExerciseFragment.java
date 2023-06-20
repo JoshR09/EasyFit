@@ -16,9 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
+import com.example.easyfit.ui.dashboard.DashboardFragment;
 import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItemClickListener {
@@ -56,6 +61,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         recyclerView = root.findViewById(R.id.exerciseRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        loadCompletedWorkouts();
+
         // Retrieve the workout from arguments bundle
         Bundle bundle = getArguments();
         if (bundle != null && bundle.containsKey("workout")) {
@@ -92,6 +99,17 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         });
 
         return root;
+    }
+
+    private void loadCompletedWorkouts() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CompletedWorkoutPrefs", Context.MODE_PRIVATE);
+        String completedWorkoutsJson = sharedPreferences.getString("completedWorkouts", "");
+
+        if (!completedWorkoutsJson.isEmpty()) {
+            Gson gson = new Gson();
+            Type workoutListType = new TypeToken<HashMap<String, Workout>>(){}.getType();
+            this.completedWorkouts.setCompletedWorkouts(gson.fromJson(completedWorkoutsJson, workoutListType));
+        }
     }
 
     public void saveCompletedWorkouts() {

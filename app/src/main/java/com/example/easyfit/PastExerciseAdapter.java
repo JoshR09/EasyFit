@@ -32,7 +32,7 @@ public class PastExerciseAdapter extends RecyclerView.Adapter<PastExerciseAdapte
     public void onBindViewHolder(@NonNull @NotNull PastExerciseAdapter.PastExerciseViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
         holder.tvPastExerciseName.setText(exercise.getName());
-        holder.tvPastExerciseSets.setText(String.valueOf(exercise.getSets()));
+        holder.tvPastExerciseSets.setText(String.valueOf(exercise.getCompletedSets()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

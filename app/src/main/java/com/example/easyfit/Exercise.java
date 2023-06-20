@@ -52,4 +52,24 @@ public class Exercise {
         isLogged = logged;
     }
 
+    public ArrayList<Set> getCompletedSetList() {
+        ArrayList<Set> completedSets = new ArrayList<>();
+        for (Set set : setList) {
+            if (set.isComplete()) {
+                completedSets.add(set);
+            }
+        }
+        return completedSets;
+    }
+
+    public int getCompletedSets() {
+        ArrayList<Set> completedSets = new ArrayList<>();
+        for (Set set : setList) {
+            if (set.isComplete()) {
+                completedSets.add(set);
+            }
+        }
+        return completedSets.size();
+    }
+
 }

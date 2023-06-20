@@ -74,7 +74,7 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
     public void onItemClick(Exercise exercise) {
         PastSetFragment pastSetFragment = new PastSetFragment(exercise, this);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("sets", exercise.getSetList());
+        bundle.putSerializable("sets", exercise.getCompletedSetList());
         bundle.putInt("position", exercises.indexOf(exercise));
         pastSetFragment.setArguments(bundle);
 

@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.easyfit.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +36,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         // Handle navigation item clicks
-        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        navController.navigate(R.id.navigation_home);
-                        return true;
-                    case R.id.navigation_dashboard:
-                        navController.navigate(R.id.navigation_dashboard);
-                        return true;
-                    default:
-                        return false;
-                }
+        navView.setOnItemSelectedListener((NavigationBarView.OnItemSelectedListener) item -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    navController.navigate(R.id.navigation_home);
+                    return true;
+                case R.id.navigation_dashboard:
+                    navController.navigate(R.id.navigation_dashboard);
+                    return true;
+                default:
+                    return false;
             }
         });
     }

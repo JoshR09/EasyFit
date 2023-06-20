@@ -5,13 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
 import com.example.easyfit.databinding.FragmentPastExerciseBinding;
+import com.example.easyfit.ui.dashboard.DashboardFragment;
 
 import java.util.List;
 
@@ -24,6 +27,26 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
     private List<Exercise> exercises;
 
     private PastExerciseAdapter adapter;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Enable the callback to handle back button press
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Navigate to the dashboard fragment
+                DashboardFragment dashboardFragment = new DashboardFragment();
+
+                // Replace the current fragment with the PastExerciseFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment_activity_main, dashboardFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +72,7 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
 
     @Override
     public void onItemClick(Exercise exercise) {
-        PastSetFragment pastSetFragment = new PastSetFragment(exercise);
+        PastSetFragment pastSetFragment = new PastSetFragment(exercise, this);
         Bundle bundle = new Bundle();
         bundle.putSerializable("sets", exercise.getSetList());
         bundle.putInt("position", exercises.indexOf(exercise));

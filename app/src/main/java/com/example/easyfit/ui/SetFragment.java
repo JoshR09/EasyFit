@@ -126,6 +126,10 @@ public class SetFragment extends Fragment implements SetAdapter.OnItemClickListe
         if (currentExercise.getCompletedSets() == currentExercise.getSets()) {
             markExerciseAsLogged();
             getParentFragmentManager().popBackStack();
+        } else {
+            currentExercise.setLogged(false);
+            exerciseFragment.getAdapter().notifyDataSetChanged();
+            exerciseFragment.getHomeFragment().saveWorkouts();
         }
     }
 }

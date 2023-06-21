@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -102,14 +103,14 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
     }
 
     private void showCreateWorkoutDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Create Workout");
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.RoundedDialogStyle);
+        builder.setTitle("Enter Workout Name");
 
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_workout, null);
         final EditText workoutNameEditText = dialogView.findViewById(R.id.workoutNameEditText);
 
         builder.setView(dialogView)
-                .setPositiveButton("Create", null) // Set positive button to null initially
+                .setPositiveButton("Create", null)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,6 +124,11 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
             @Override
             public void onShow(DialogInterface dialog) {
                 Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.dialogButtonTextColor));
+
+                Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.dialogButtonTextColor));
+
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,6 +148,8 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
         alertDialog.show();
     }
+
+
 
     private void createWorkout(String name) {
         ArrayList<Exercise> exercises = new ArrayList<>();

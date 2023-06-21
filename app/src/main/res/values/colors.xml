@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#ff0ab1</color>
     <color name="red">#ff002f</color>
+    <color name="dialogButtonTextColor">#FF000000</color>
+
 </resources>

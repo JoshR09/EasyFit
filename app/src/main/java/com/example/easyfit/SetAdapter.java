@@ -44,9 +44,35 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         holder.completeSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                set.setComplete(true);
-                notifyDataSetChanged();
+                if (set.isComplete()) {
+                    set.setComplete(false);
+                } else {
+                    set.setComplete(true);
+                }
                 listener.onCompleteClick(set);
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.etReps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (set.isComplete()) {
+                    set.setComplete(false);
+                }
+                listener.onCompleteClick(set);
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.etWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (set.isComplete()) {
+                    set.setComplete(false);
+                }
+                listener.onCompleteClick(set);
+                notifyDataSetChanged();
             }
         });
     }

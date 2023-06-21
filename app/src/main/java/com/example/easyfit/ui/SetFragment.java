@@ -64,30 +64,6 @@ public class SetFragment extends Fragment implements SetAdapter.OnItemClickListe
             }
         }
 
-        Button logButton = root.findViewById(R.id.logButton);
-        logButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < recyclerView.getChildCount(); i++) {
-                    View view = recyclerView.getChildAt(i);
-                    EditText etReps = view.findViewById(R.id.etReps);
-                    EditText etWeight = view.findViewById(R.id.etWeight);
-
-                    int reps = Integer.parseInt(etReps.getText().toString());
-                    int weight = Integer.parseInt(etWeight.getText().toString());
-
-                    if (adapter != null) {
-                        adapter.updateSetValues(i, reps, weight);
-                        exerciseFragment.getHomeFragment().saveWorkouts();
-                    }
-                }
-
-                markExerciseAsLogged(); // New method to mark the exercise as logged
-
-                getParentFragmentManager().popBackStack();
-            }
-        });
-
         Button addButton = root.findViewById(R.id.addSetButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +107,26 @@ public class SetFragment extends Fragment implements SetAdapter.OnItemClickListe
 
     @Override
     public void onCompleteClick(Set set) {
+        for (int i = 0; i < recyclerView.getChildCount(); i++) {
+            View view = recyclerView.getChildAt(i);
+            EditText etReps = view.findViewById(R.id.etReps);
+            EditText etWeight = view.findViewById(R.id.etWeight);
+
+            int reps = Integer.parseInt(etReps.getText().toString());
+            int weight = Integer.parseInt(etWeight.getText().toString());
+
+            if (adapter != null) {
+                adapter.updateSetValues(i, reps, weight);
+                exerciseFragment.getHomeFragment().saveWorkouts();
+            }
+        }
+
         exerciseFragment.getHomeFragment().saveWorkouts();
+
+        if (currentExercise.getCompletedSets() == currentExercise.getSets()) {
+            markExerciseAsLogged();
+            getParentFragmentManager().popBackStack();
+        }
     }
 }
 

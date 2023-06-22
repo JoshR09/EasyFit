@@ -39,7 +39,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
         holder.tvExerciseName.setText(exercise.getName());
-        holder.tvExerciseSets.setText(String.valueOf(exercise.getSets()));
+        holder.tvExerciseSets.setText("Sets: " + String.valueOf(exercise.getSets()));
 
         if (exercise.isLogged()) {
             holder.itemView.setBackgroundResource(R.drawable.blue_overlay);

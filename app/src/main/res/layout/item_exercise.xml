@@ -5,25 +5,54 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content">
 
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvExerciseSets"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="28dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="174dp"
-            android:layout_marginEnd="174dp" app:layout_constraintEnd_toEndOf="parent"
-    />
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvExerciseName"
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/blue_darkblue_gradient"
+            android:padding="25dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="28dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="56dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+    >
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:id="@+id/tvExerciseName"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvExerciseSets"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="30dp"
+        />
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" android:background="#FFFFFF"/>
+
     <Button
             android:text="X"
             android:layout_width="56dp"
-            android:layout_height="41dp" android:id="@+id/dlExerciseButton"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="18dp"
-            android:layout_marginEnd="56dp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_height="41dp"
+            android:id="@+id/dlExerciseButton"
+            android:layout_marginStart="13dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

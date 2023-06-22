@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -36,7 +35,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         holder.etWeight.setText(String.valueOf(set.getWeight()));
 
         if (set.isComplete()) {
-            holder.itemView.setBackgroundResource(R.drawable.blue_overlay);
+            holder.itemView.setBackgroundResource(R.drawable.grey_overlay);
         } else {
             holder.itemView.setBackgroundResource(0);
         }

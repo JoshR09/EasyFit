@@ -19,12 +19,20 @@
             android:layout_height="wrap_content" android:id="@+id/addSetButton"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="80dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+            android:background="@drawable/small_pink_pink_gradient"
+            android:fontFamily="@font/lato_black" android:textColor="#FFFFFF" android:textSize="14sp"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/dlSetButton" android:layout_marginEnd="10dp"/>
     <Button
             android:text="Remove Set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/dlSetButton"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
-            android:layout_marginEnd="80dp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginEnd="80dp" app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/small_pink_pink_gradient"
+            android:fontFamily="@font/lato_black" android:textColor="#FFFFFF" android:textSize="14sp"
+            android:elevation="4dp"
+            android:layout_marginStart="10dp" app:layout_constraintStart_toEndOf="@+id/addSetButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

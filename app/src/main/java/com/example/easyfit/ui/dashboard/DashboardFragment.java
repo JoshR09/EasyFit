@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -18,17 +16,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfit.*;
 import com.example.easyfit.R;
 import com.example.easyfit.databinding.FragmentDashboardBinding;
-import com.example.easyfit.ui.ExerciseFragment;
 import com.example.easyfit.ui.PastExerciseFragment;
-import com.example.easyfit.ui.home.HomeFragment;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.*;
 
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DashboardFragment extends Fragment {
@@ -139,7 +132,7 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.blue_overlay));
+            view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.grey_overlay));
         }
     }
 }

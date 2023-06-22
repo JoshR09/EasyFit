@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,9 +36,9 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         holder.etWeight.setText(String.valueOf(set.getWeight()));
 
         if (set.isComplete()) {
-            holder.itemView.setBackgroundResource(R.drawable.grey_overlay);
+            holder.setLinearLayout.setBackgroundResource(R.drawable.grey_overlay);
         } else {
-            holder.itemView.setBackgroundResource(0);
+            holder.setLinearLayout.setBackgroundResource(0);
         }
 
         holder.completeSet.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +95,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
         EditText etReps;
         EditText etWeight;
         Button completeSet;
+        LinearLayout setLinearLayout;
 
         public SetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,6 +104,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.SetViewHolder> {
             etReps = itemView.findViewById(R.id.etReps);
             etWeight = itemView.findViewById(R.id.etWeight);
             completeSet = itemView.findViewById(R.id.completeSet);
+            setLinearLayout = itemView.findViewById(R.id.setLinearLayout);
         }
     }
 

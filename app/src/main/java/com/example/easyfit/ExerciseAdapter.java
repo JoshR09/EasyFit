@@ -46,7 +46,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         if (exercise.isLogged()) {
             holder.linearLayout.setBackgroundResource(R.drawable.green_green_gradient);
         } else {
-            holder.itemView.setBackgroundResource(0);
+            holder.linearLayout.setBackgroundResource(R.drawable.white_button);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

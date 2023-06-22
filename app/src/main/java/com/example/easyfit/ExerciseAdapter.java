@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -119,7 +120,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         TextView tvExerciseName;
         TextView tvExerciseSets;
-        Button dlExerciseButton;
+        ImageButton dlExerciseButton;
 
         public ExerciseViewHolder(@NonNull View itemView) {
             super(itemView);

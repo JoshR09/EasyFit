@@ -3,7 +3,14 @@ package com.example.easyfit.ui.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +27,9 @@ import com.example.easyfit.ui.PastExerciseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.*;
+import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
+import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -58,6 +68,64 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         workoutHistory = root.findViewById(R.id.workoutHistory); // Initialize the attribute
+
+        Typeface customFont = Typeface.createFromAsset(getContext().getAssets(), "lato_bold_2.ttf");
+
+        DayViewDecorator customDecorator = new DayViewDecorator() {
+            @Override
+            public boolean shouldDecorate(CalendarDay day) {
+                // Customize this method to determine which days to decorate
+                return true;
+            }
+
+            @Override
+            public void decorate(DayViewFacade view) {
+                // Set the custom Typeface for the day text
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    view.addSpan(new TypefaceSpan(customFont));
+                }
+            }
+        };
+
+        // Customize the font for the month title
+        workoutHistory.setTitleFormatter(new TitleFormatter() {
+            @Override
+            public CharSequence format(CalendarDay day) {
+                // Customize the font for the month title
+                Typeface monthFont = Typeface.createFromAsset(getContext().getAssets(), "lato_bold_2.ttf");
+                String monthLabel = getMonthName(day.getMonth()) + " " + day.getYear();
+                SpannableString spannableString = new SpannableString(monthLabel);
+                spannableString.setSpan(new CustomTypefaceSpan(monthFont), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                return spannableString;
+            }
+
+            private String getMonthName(int month) {
+                String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+                if (month >= 0 && month < monthNames.length) {
+                    return monthNames[month];
+                } else {
+                    return "";
+                }
+            }
+        });
+
+
+        WeekDayFormatter customWeekDayFormatter = new WeekDayFormatter() {
+            @Override
+            public CharSequence format(int dayOfWeek) {
+                // Customize the font for the weekdays
+                Typeface weekdayFont = Typeface.createFromAsset(getContext().getAssets(), "lato_bold_2.ttf");
+                String[] weekdayLabels = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+                SpannableString spannableString = new SpannableString(weekdayLabels[dayOfWeek - 1]);
+                spannableString.setSpan(new CustomTypefaceSpan(weekdayFont), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                return spannableString;
+            }
+        };
+
+        workoutHistory.setWeekDayFormatter(customWeekDayFormatter);
+
+
+        workoutHistory.addDecorator(customDecorator);
 
         loadCompletedWorkouts();
 
@@ -135,4 +203,45 @@ public class DashboardFragment extends Fragment {
             view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.grey_overlay));
         }
     }
+
+    private static class CustomTypefaceSpan extends TypefaceSpan {
+        private final Typeface newType;
+
+        public CustomTypefaceSpan(Typeface type) {
+            super("");
+            newType = type;
+        }
+
+        @Override
+        public void updateDrawState(TextPaint ds) {
+            applyCustomTypeFace(ds, newType);
+        }
+
+        @Override
+        public void updateMeasureState(TextPaint paint) {
+            applyCustomTypeFace(paint, newType);
+        }
+
+        private static void applyCustomTypeFace(Paint paint, Typeface tf) {
+            int oldStyle;
+            Typeface old = paint.getTypeface();
+            if (old == null) {
+                oldStyle = 0;
+            } else {
+                oldStyle = old.getStyle();
+            }
+
+            int fake = oldStyle & ~tf.getStyle();
+            if ((fake & Typeface.BOLD) != 0) {
+                paint.setFakeBoldText(true);
+            }
+
+            if ((fake & Typeface.ITALIC) != 0) {
+                paint.setTextSkewX(-0.25f);
+            }
+
+            paint.setTypeface(tf);
+        }
+    }
+
 }

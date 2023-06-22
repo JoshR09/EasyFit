@@ -3,7 +3,25 @@
     <style name="RoundedDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
+
     <style name="RoundedDialogButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textColor">@color/dialogButtonTextColor</item>
     </style>
+
+    <style name="CustomCalendarView">
+        <item name="mcv_dateTextAppearance">@style/CustomCalendarTextAppearance</item>
+        <item name="mcv_weekDayTextAppearance">@style/CustomCalendarTextAppearance</item>
+        <item name="mcv_headerTextAppearance">@style/CustomCalendarHeaderTextAppearance</item>
+    </style>
+
+    <style name="CustomCalendarTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CustomCalendarHeaderTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+
 </resources>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.activity.OnBackPressedCallback;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -146,7 +147,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
     }
 
     private void showCreateExerciseDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.RoundedDialogStyle);
         builder.setTitle("Add Exercise");
 
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_exercise, null);
@@ -168,6 +169,11 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             @Override
             public void onShow(DialogInterface dialog) {
                 Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.dialogButtonTextColor));
+
+                Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.dialogButtonTextColor));
+
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

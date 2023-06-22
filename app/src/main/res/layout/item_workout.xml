@@ -4,7 +4,7 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
-                                                   android:padding="10dp">
+>
 
     <FrameLayout
             android:id="@+id/frameLayout"
@@ -18,7 +18,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:elevation="4dp"
+            android:layout_marginTop="10dp" android:layout_marginBottom="10dp">
 
         <TextView
                 android:id="@+id/tvName"
@@ -45,6 +47,8 @@
             app:layout_constraintStart_toEndOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/frameLayout"
             app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-            android:background="@drawable/ic_delete"/>
+            android:background="@drawable/ic_delete"
+            android:elevation="5dp"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

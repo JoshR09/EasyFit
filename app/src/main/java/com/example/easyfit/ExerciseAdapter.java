@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,7 +44,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         holder.tvExerciseSets.setText("Sets: " + String.valueOf(exercise.getSets()));
 
         if (exercise.isLogged()) {
-            holder.itemView.setBackgroundResource(R.drawable.blue_overlay);
+            holder.linearLayout.setBackgroundResource(R.drawable.green_green_gradient);
         } else {
             holder.itemView.setBackgroundResource(0);
         }
@@ -121,12 +122,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         TextView tvExerciseName;
         TextView tvExerciseSets;
         ImageButton dlExerciseButton;
+        LinearLayout linearLayout;
 
         public ExerciseViewHolder(@NonNull View itemView) {
             super(itemView);
             tvExerciseName = itemView.findViewById(R.id.tvExerciseName);
             tvExerciseSets = itemView.findViewById(R.id.tvExerciseSets);
             dlExerciseButton = itemView.findViewById(R.id.dlExerciseButton);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
     }
 

@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textSize="16sp"
-                android:layout_marginStart="20dp" app:layout_constraintStart_toEndOf="@+id/tvReps"
+                android:layout_marginStart="10dp" app:layout_constraintStart_toEndOf="@+id/tvReps"
                 android:textColor="#000000" android:fontFamily="@font/lato_bold"
         />
         <TextView
@@ -41,9 +41,9 @@
                 android:layout_height="wrap_content"
                 android:text="Weight: "
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/etWeight" android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/etWeight"
                 android:textColor="#000000" android:fontFamily="@font/lato_bold"
-                android:layout_marginStart="38dp" app:layout_constraintStart_toEndOf="@+id/etReps"/>
+                android:layout_marginStart="40dp" app:layout_constraintStart_toEndOf="@+id/etReps"/>
         <EditText
                 android:id="@+id/etWeight"
                 android:layout_width="wrap_content"
@@ -51,17 +51,28 @@
                 android:inputType="numberDecimal"
                 android:textSize="16sp"
                 android:textColor="#000000" android:fontFamily="@font/lato_bold"
-                android:layout_marginStart="20dp" app:layout_constraintStart_toEndOf="@+id/tvWeight"/>
-        <Button
-                android:layout_width="70dp"
-                android:layout_height="38dp" android:id="@+id/completeSet"
-                android:layout_marginStart="50dp" app:layout_constraintStart_toEndOf="@+id/etWeight"
-                android:layout_marginEnd="15dp" app:layout_constraintEnd_toEndOf="parent"
-                android:text="Log"
-                android:background="@drawable/small_pink_pink_gradient"
-                android:fontFamily="@font/lato_bold" android:textColor="#FFFFFF" android:textSize="14sp"
-                android:elevation="4dp"
-        />
+                android:layout_marginStart="10dp" app:layout_constraintStart_toEndOf="@+id/tvWeight"/>
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" android:background="#FFFFFF"/>
+
+    <Button
+            android:id="@+id/completeSet"
+            android:layout_width="70dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="13dp"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/setLinearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/setLinearLayout"
+            android:text="Log"
+            android:background="@drawable/small_pink_pink_gradient"
+            android:fontFamily="@font/lato_bold" android:textColor="#FFFFFF" android:textSize="14sp"
+            android:elevation="5dp"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

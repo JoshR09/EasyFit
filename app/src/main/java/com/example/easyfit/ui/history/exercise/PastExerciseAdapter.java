@@ -1,4 +1,4 @@
-package com.example.easyfit;
+package com.example.easyfit.ui.history.exercise;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.easyfit.R;
+import com.example.easyfit.structures.Exercise;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

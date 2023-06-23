@@ -1,4 +1,4 @@
-package com.example.easyfit.ui;
+package com.example.easyfit.ui.workout.set;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentSetBinding;
-import com.example.easyfit.ui.ExerciseFragment;
+import com.example.easyfit.structures.Exercise;
+import com.example.easyfit.structures.Set;
+import com.example.easyfit.ui.workout.exercise.ExerciseFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SetFragment extends Fragment implements SetAdapter.OnItemClickListener {
     private FragmentSetBinding binding;

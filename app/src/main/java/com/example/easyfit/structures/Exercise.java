@@ -1,4 +1,4 @@
-package com.example.easyfit;
+package com.example.easyfit.structures;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.easyfit.ui.dashboard;
+package com.example.easyfit.ui.history;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,23 +22,23 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import com.example.easyfit.*;
 import com.example.easyfit.R;
-import com.example.easyfit.databinding.FragmentDashboardBinding;
-import com.example.easyfit.ui.PastExerciseFragment;
+import com.example.easyfit.databinding.FragmentHistoryBinding;
+import com.example.easyfit.structures.CompletedWorkouts;
+import com.example.easyfit.structures.Workout;
+import com.example.easyfit.ui.history.exercise.PastExerciseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.*;
-import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class DashboardFragment extends Fragment {
+public class HistoryFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentHistoryBinding binding;
 
     private CompletedWorkouts completedWorkouts = new CompletedWorkouts();
 
@@ -63,10 +63,10 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        HistoryViewModel historyViewModel =
+                new ViewModelProvider(this).get(HistoryViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         workoutHistory = root.findViewById(R.id.workoutHistory); // Initialize the attribute

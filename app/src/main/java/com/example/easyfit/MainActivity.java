@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
         // Handle navigation item clicks
         navView.setOnItemSelectedListener((NavigationBarView.OnItemSelectedListener) item -> {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    navController.navigate(R.id.navigation_home);
+                case R.id.navigation_workouts:
+                    navController.navigate(R.id.navigation_workouts);
                     return true;
-                case R.id.navigation_dashboard:
-                    navController.navigate(R.id.navigation_dashboard);
+                case R.id.navigation_history:
+                    navController.navigate(R.id.navigation_history);
                     return true;
                 default:
                     return false;

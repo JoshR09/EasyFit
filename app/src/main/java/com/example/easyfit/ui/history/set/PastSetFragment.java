@@ -1,11 +1,9 @@
-package com.example.easyfit.ui;
+package com.example.easyfit.ui.history.set;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
@@ -14,8 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentPastSetBinding;
-import com.example.easyfit.databinding.FragmentSetBinding;
-import com.example.easyfit.ui.dashboard.DashboardFragment;
+import com.example.easyfit.structures.Exercise;
+import com.example.easyfit.structures.Set;
+import com.example.easyfit.ui.history.exercise.PastExerciseFragment;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.easyfit.ui.home;
+package com.example.easyfit.ui.workout;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,11 +20,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.R;
-import com.example.easyfit.Exercise;
-import com.example.easyfit.Workout;
-import com.example.easyfit.WorkoutAdapter;
-import com.example.easyfit.databinding.FragmentHomeBinding;
-import com.example.easyfit.ui.ExerciseFragment;
+import com.example.easyfit.databinding.FragmentWorkoutsBinding;
+import com.example.easyfit.structures.Exercise;
+import com.example.easyfit.structures.Workout;
+import com.example.easyfit.ui.workout.exercise.ExerciseFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,9 +31,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClickListener {
+public class WorkoutFragment extends Fragment implements WorkoutAdapter.OnItemClickListener {
 
-    private FragmentHomeBinding binding;
+    private FragmentWorkoutsBinding binding;
 
     private List<Workout> workouts = new ArrayList<>();
 
@@ -59,10 +58,10 @@ public class HomeFragment extends Fragment implements WorkoutAdapter.OnItemClick
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        WorkoutViewModel workoutViewModel =
+                new ViewModelProvider(this).get(WorkoutViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // Display workouts in a RecyclerView or ListView

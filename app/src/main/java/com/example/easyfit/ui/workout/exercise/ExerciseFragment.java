@@ -1,4 +1,4 @@
-package com.example.easyfit.ui;
+package com.example.easyfit.ui.workout.exercise;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,13 +18,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
 import com.example.easyfit.databinding.FragmentExerciseBinding;
-import com.example.easyfit.ui.dashboard.DashboardFragment;
-import com.example.easyfit.ui.home.HomeFragment;
+import com.example.easyfit.structures.CompletedWorkouts;
+import com.example.easyfit.structures.Exercise;
+import com.example.easyfit.structures.Set;
+import com.example.easyfit.structures.Workout;
+import com.example.easyfit.ui.workout.set.SetFragment;
+import com.example.easyfit.ui.workout.WorkoutFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,7 +40,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
 
     private Workout currentWorkout;
 
-    private HomeFragment homeFragment;
+    private WorkoutFragment workoutFragment;
 
     private ExerciseAdapter adapter;
 
@@ -47,8 +50,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         this.currentWorkout = workout;
     }
 
-    public ExerciseFragment(HomeFragment homeFragment) {
-        this.homeFragment = homeFragment;
+    public ExerciseFragment(WorkoutFragment workoutFragment) {
+        this.workoutFragment = workoutFragment;
     }
 
     public ExerciseAdapter getAdapter() {
@@ -64,7 +67,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             @Override
             public void handleOnBackPressed() {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, homeFragment);
+                transaction.replace(R.id.nav_host_fragment_activity_main, workoutFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -114,9 +117,9 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
                     exercise.setLogged(false);
                 }
                 adapter.notifyDataSetChanged();
-                homeFragment.saveWorkouts();
+                workoutFragment.saveWorkouts();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, homeFragment);
+                transaction.replace(R.id.nav_host_fragment_activity_main, workoutFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -207,14 +210,14 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             currentWorkout.getExercises().add(newExercise);
             recyclerView.getAdapter().notifyDataSetChanged();
 
-            if (homeFragment != null) {
-                homeFragment.saveWorkouts(); // Call the saveWorkouts method in HomeFragment
+            if (workoutFragment != null) {
+                workoutFragment.saveWorkouts(); // Call the saveWorkouts method in HomeFragment
             }
         }
     }
 
-    public HomeFragment getHomeFragment() {
-        return this.homeFragment;
+    public WorkoutFragment getHomeFragment() {
+        return this.workoutFragment;
     }
 
     @Override
@@ -236,7 +239,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         exercises.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, exercises.size()); // Update the remaining items
-        homeFragment.saveWorkouts();
+        workoutFragment.saveWorkouts();
     }
 
 }

@@ -1,20 +1,20 @@
-package com.example.easyfit.ui;
+package com.example.easyfit.ui.history.exercise;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.*;
-import com.example.easyfit.databinding.FragmentExerciseBinding;
 import com.example.easyfit.databinding.FragmentPastExerciseBinding;
-import com.example.easyfit.ui.dashboard.DashboardFragment;
+import com.example.easyfit.structures.Exercise;
+import com.example.easyfit.structures.Workout;
+import com.example.easyfit.ui.history.HistoryFragment;
+import com.example.easyfit.ui.history.set.PastSetFragment;
 
 import java.util.List;
 
@@ -37,11 +37,11 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
             @Override
             public void handleOnBackPressed() {
                 // Navigate to the dashboard fragment
-                DashboardFragment dashboardFragment = new DashboardFragment();
+                HistoryFragment historyFragment = new HistoryFragment();
 
                 // Replace the current fragment with the PastExerciseFragment
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, dashboardFragment);
+                transaction.replace(R.id.nav_host_fragment_activity_main, historyFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

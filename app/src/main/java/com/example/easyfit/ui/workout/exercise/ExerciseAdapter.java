@@ -1,4 +1,4 @@
-package com.example.easyfit;
+package com.example.easyfit.ui.workout.exercise;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.easyfit.R;
+import com.example.easyfit.structures.Exercise;
 
 import java.util.List;
 

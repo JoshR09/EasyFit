@@ -40,8 +40,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     @Override
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
-        holder.tvExerciseName.setText(exercise.getName());
-        holder.tvExerciseSets.setText("Sets: " + String.valueOf(exercise.getSets()));
+        holder.tvExerciseText.setText(exercise.getName() + ", " + String.valueOf(exercise.getSets()) + " sets");
 
         if (exercise.isLogged()) {
             holder.linearLayout.setBackgroundResource(R.drawable.green_green_gradient);
@@ -119,15 +118,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     }
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
-        TextView tvExerciseName;
-        TextView tvExerciseSets;
+        TextView tvExerciseText;
         ImageButton dlExerciseButton;
         LinearLayout linearLayout;
 
         public ExerciseViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvExerciseName = itemView.findViewById(R.id.tvExerciseName);
-            tvExerciseSets = itemView.findViewById(R.id.tvExerciseSets);
+            tvExerciseText = itemView.findViewById(R.id.tvExerciseText);
             dlExerciseButton = itemView.findViewById(R.id.dlExerciseButton);
             linearLayout = itemView.findViewById(R.id.linearLayout);
         }

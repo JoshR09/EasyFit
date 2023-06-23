@@ -26,10 +26,11 @@ public class Workout implements Serializable {
         return exercises;
     }
 
+    // returns all exercises which have at least 1 set logged
     public ArrayList<Exercise> getLoggedExercises() {
         ArrayList<Exercise> loggedExercises = new ArrayList<>();
         for (Exercise exercise : exercises) {
-            if (exercise.isLogged()) {
+            if (exercise.getCompletedSets() > 0) {
                 loggedExercises.add(exercise);
             }
         }

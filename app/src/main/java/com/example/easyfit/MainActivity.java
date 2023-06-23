@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);

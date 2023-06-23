@@ -3,6 +3,7 @@ package com.example.easyfit.ui.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,8 +126,11 @@ public class DashboardFragment extends Fragment {
 
         workoutHistory.setWeekDayFormatter(customWeekDayFormatter);
 
-
         workoutHistory.addDecorator(customDecorator);
+
+        workoutHistory.setLeftArrowMask(getContext().getDrawable(R.drawable.left_calendar_arrow));
+
+        workoutHistory.setRightArrowMask(getContext().getDrawable(R.drawable.right_calendar_arrow));
 
         loadCompletedWorkouts();
 
@@ -200,7 +205,8 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.grey_overlay));
+            view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.date_background));
+            view.addSpan(new ForegroundColorSpan(Color.WHITE));
         }
     }
 

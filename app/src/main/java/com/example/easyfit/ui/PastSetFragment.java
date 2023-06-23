@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -61,6 +62,9 @@ public class PastSetFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.pastSetRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        TextView exerciseName = root.findViewById(R.id.tvPastExerciseName);
+        exerciseName.setText(currentExercise.getName().toUpperCase());
 
         Bundle bundle = getArguments();
         if (bundle != null && bundle.containsKey("sets")) {

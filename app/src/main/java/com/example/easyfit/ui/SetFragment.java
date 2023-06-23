@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -63,6 +64,9 @@ public class SetFragment extends Fragment implements SetAdapter.OnItemClickListe
                 recyclerView.setAdapter(adapter);
             }
         }
+
+        TextView exerciseName = root.findViewById(R.id.tvExerciseName);
+        exerciseName.setText(currentExercise.getName().toUpperCase());
 
         Button addButton = root.findViewById(R.id.addSetButton);
         addButton.setOnClickListener(new View.OnClickListener() {

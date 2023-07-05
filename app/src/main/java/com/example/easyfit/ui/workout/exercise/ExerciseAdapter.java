@@ -13,23 +13,45 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfit.R;
 import com.example.easyfit.structures.Exercise;
 
+import java.util.Collections;
 import java.util.List;
 
-public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> {
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> implements ExerciseItemTouchHelper.ItemTouchHelperListener {
     private List<Exercise> exercises;
 
     private ExerciseAdapter.OnItemClickListener listener;
 
     private Context context;
 
-    public ExerciseAdapter(Context context, List<Exercise> exercises, ExerciseAdapter.OnItemClickListener listener) {
+    public ExerciseAdapter(Context context, List<Exercise> exercises, ExerciseAdapter.OnItemClickListener listener, RecyclerView recyclerView) {
         this.context = context;
         this.exercises = exercises;
         this.listener = listener;
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ExerciseItemTouchHelper(this));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    // Implement the necessary methods for drag-and-drop functionality
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        // Swap the exercises in the list
+        Collections.swap(exercises, fromPosition, toPosition);
+
+        // Notify the adapter that the item has moved
+        notifyItemMoved(fromPosition, toPosition);
+
+        listener.onItemMove(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        // Not used for drag-and-drop, but required to implement the interface
     }
 
     @NonNull
@@ -135,5 +157,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     public interface OnItemClickListener {
         void onItemClick(Exercise exercise);
         void onDeleteClick(int position);
+        void onItemMove(int fromPosition, int toPosition);
     }
 }

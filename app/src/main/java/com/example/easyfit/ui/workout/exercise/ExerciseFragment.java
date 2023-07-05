@@ -90,7 +90,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
             Workout workout = (Workout) bundle.getSerializable("workout");
             if (workout != null) {
                 exercises = workout.getExercises();
-                this.adapter = new ExerciseAdapter(requireContext(), exercises, this);
+                this.adapter = new ExerciseAdapter(requireContext(), exercises, this, this.recyclerView);
                 recyclerView.setAdapter(this.adapter);
             }
         }
@@ -242,11 +242,9 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
         workoutFragment.saveWorkouts();
     }
 
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        this.workoutFragment.saveWorkouts();
+    }
+
 }
-
-
-
-
-
-
-

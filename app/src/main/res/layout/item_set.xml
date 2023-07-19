@@ -61,7 +61,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.75" android:background="#FFFFFF"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/completeSet"
             android:layout_width="70dp"
             android:layout_height="38dp"
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/setLinearLayout"
             android:text="Log"
             android:background="@drawable/small_pink_pink_gradient"
-            android:fontFamily="@font/lato_bold" android:textColor="#FFFFFF" android:textSize="14sp"
+            android:fontFamily="@font/lato_black" android:textColor="#FFFFFF" android:textSize="14sp"
             android:elevation="5dp"
     />
 

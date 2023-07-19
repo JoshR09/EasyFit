@@ -13,7 +13,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginBottom="75dp" android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/addSetButton"/>
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
             android:text="Add Set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/addSetButton"
@@ -23,8 +23,9 @@
             android:fontFamily="@font/lato_black" android:textColor="#FFFFFF" android:textSize="14sp"
             android:elevation="4dp"
             app:layout_constraintEnd_toStartOf="@+id/dlSetButton" android:layout_marginEnd="10dp"
-            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/tvExerciseName"/>
-    <Button
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/tvExerciseName"
+            android:padding="10dp"/>
+    <androidx.appcompat.widget.AppCompatButton
             android:text="Remove Set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/dlSetButton"
@@ -33,7 +34,8 @@
             android:fontFamily="@font/lato_black" android:textColor="#FFFFFF" android:textSize="14sp"
             android:elevation="4dp"
             android:layout_marginStart="10dp" app:layout_constraintStart_toEndOf="@+id/addSetButton"
-            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/tvExerciseName"/>
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/tvExerciseName"
+            android:padding="10dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"

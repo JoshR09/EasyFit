@@ -25,6 +25,7 @@
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/pink_red_gradient.xml" value="0.2985" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/right_calendar_arrow.xml" value="0.2985" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/rounded_background.xml" value="0.2985" />
+        <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/small_green_green_gradient.xml" value="0.2985" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/small_pink_pink_gradient.xml" value="0.2985" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/white_button.xml" value="0.2985" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/drawable/white_white_gradient.xml" value="0.2985" />
@@ -34,6 +35,7 @@
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/dialog_create_workout.xml" value="0.365625" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_exercise.xml" value="0.33" />
+        <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_history.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_home.xml" value="0.4274193548387097" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gogee/Documents/EasyFit/app/src/main/res/layout/fragment_past_exercise.xml" value="0.36666666666666664" />

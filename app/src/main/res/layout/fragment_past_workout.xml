@@ -8,7 +8,7 @@
         tools:context=".ui.workout.WorkoutFragment">
 
     <TextView
-            android:text="Completed Workouts"
+            android:text="COMPLETED WORKOUTS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tvWorkouts"
             android:fontFamily="@font/lato_black" android:textColor="@color/black" android:textSize="20sp"

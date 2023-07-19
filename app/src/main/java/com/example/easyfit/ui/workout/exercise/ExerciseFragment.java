@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -134,7 +135,7 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.OnItem
 
         if (!completedWorkoutsJson.isEmpty()) {
             Gson gson = new Gson();
-            Type workoutListType = new TypeToken<HashMap<String, Workout>>(){}.getType();
+            Type workoutListType = new TypeToken<HashMap<String, ArrayList<Workout>>>(){}.getType();
             this.completedWorkouts.setCompletedWorkouts(gson.fromJson(completedWorkoutsJson, workoutListType));
         }
     }

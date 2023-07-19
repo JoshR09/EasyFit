@@ -15,6 +15,7 @@ import com.example.easyfit.structures.Exercise;
 import com.example.easyfit.structures.Workout;
 import com.example.easyfit.ui.history.HistoryFragment;
 import com.example.easyfit.ui.history.set.PastSetFragment;
+import com.example.easyfit.ui.history.workout.PastWorkoutFragment;
 
 import java.util.List;
 
@@ -28,6 +29,12 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
 
     private PastExerciseAdapter adapter;
 
+    private PastWorkoutFragment pastWorkoutFragment;
+
+    public PastExerciseFragment(PastWorkoutFragment pastWorkoutFragment) {
+        this.pastWorkoutFragment = pastWorkoutFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +43,9 @@ public class PastExerciseFragment extends Fragment implements PastExerciseAdapte
         requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // Navigate to the dashboard fragment
-                HistoryFragment historyFragment = new HistoryFragment();
-
-                // Replace the current fragment with the PastExerciseFragment
+                // Replace the current fragment with the PastWorkoutFragment
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, historyFragment);
+                transaction.replace(R.id.nav_host_fragment_activity_main, pastWorkoutFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

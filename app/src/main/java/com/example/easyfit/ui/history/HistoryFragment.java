@@ -27,6 +27,7 @@ import com.example.easyfit.databinding.FragmentHistoryBinding;
 import com.example.easyfit.structures.CompletedWorkouts;
 import com.example.easyfit.structures.Workout;
 import com.example.easyfit.ui.history.exercise.PastExerciseFragment;
+import com.example.easyfit.ui.history.workout.PastWorkoutFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.*;
@@ -139,9 +140,9 @@ public class HistoryFragment extends Fragment {
             public void onDateSelected(@NonNull MaterialCalendarView calendarView, @NonNull CalendarDay date, boolean selected) {
                 Calendar selectedDate = date.getCalendar();
                 String dateKey = selectedDate.get(Calendar.DAY_OF_MONTH) + "-" + selectedDate.get(Calendar.MONTH) + "-" + selectedDate.get(Calendar.YEAR);
-                Workout workout = completedWorkouts.getCompletedWorkouts().get(dateKey);
-                if (workout != null) {
-                    navigateToPastExerciseFragment(workout);
+                ArrayList<Workout> workouts = completedWorkouts.getCompletedWorkouts().get(dateKey);
+                if (workouts != null) {
+                    navigateToPastWorkoutFragment(workouts);
                 }
             }
         });
@@ -149,15 +150,15 @@ public class HistoryFragment extends Fragment {
         return root;
     }
 
-    public void navigateToPastExerciseFragment(Workout workout) {
-        PastExerciseFragment pastExerciseFragment = new PastExerciseFragment();
+    public void navigateToPastWorkoutFragment(ArrayList<Workout> workouts) {
+        PastWorkoutFragment pastWorkoutFragment = new PastWorkoutFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("workout", workout);
-        pastExerciseFragment.setArguments(bundle);
+        bundle.putSerializable("workouts", workouts);
+        pastWorkoutFragment.setArguments(bundle);
 
         // Replace the current fragment with the PastExerciseFragment
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment_activity_main, pastExerciseFragment);
+        transaction.replace(R.id.nav_host_fragment_activity_main, pastWorkoutFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -168,7 +169,7 @@ public class HistoryFragment extends Fragment {
 
         if (!completedWorkoutsJson.isEmpty()) {
             Gson gson = new Gson();
-            Type workoutListType = new TypeToken<HashMap<String, Workout>>(){}.getType();
+            Type workoutListType = new TypeToken<HashMap<String, ArrayList<Workout>>>(){}.getType();
             this.completedWorkouts.setCompletedWorkouts(gson.fromJson(completedWorkoutsJson, workoutListType));
 
             // Set decorators for completed workout dates

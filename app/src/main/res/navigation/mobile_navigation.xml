@@ -7,13 +7,13 @@
 
     <fragment
             android:id="@+id/navigation_workouts"
-            android:name="com.example.easyfit.ui.workout.WorkoutFragment"
+            android:name="com.easydevelopment.easyfit.ui.workout.WorkoutFragment"
             android:label="@string/title_workouts"
             tools:layout="@layout/fragment_workouts"/>
 
     <fragment
             android:id="@+id/navigation_history"
-            android:name="com.example.easyfit.ui.history.HistoryFragment"
+            android:name="com.easydevelopment.easyfit.ui.history.HistoryFragment"
             android:label="@string/title_history"
             tools:layout="@layout/fragment_history"/>
 

@@ -1,6 +1,8 @@
 package com.easydevelopment.easyfit.structures;
 
-public class Set {
+import java.io.Serializable;
+
+public class Set implements Serializable {
 
     private int reps;
 

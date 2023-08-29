@@ -1,8 +1,9 @@
 package com.easydevelopment.easyfit.structures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Exercise {
+public class Exercise implements Serializable {
     private String name;
 
     private int sets;

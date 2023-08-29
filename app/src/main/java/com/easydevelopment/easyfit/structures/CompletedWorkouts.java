@@ -1,10 +1,11 @@
 package com.easydevelopment.easyfit.structures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class CompletedWorkouts {
+public class CompletedWorkouts implements Serializable {
 
     HashMap<String, ArrayList<Workout>> completedWorkouts = new HashMap<>();
 
